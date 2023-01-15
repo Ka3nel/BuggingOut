@@ -71,6 +71,21 @@ const Project = sequelize.define('project', {
     }
 });
 
+const project_users = sequelize.define('project_users',{
+    uuid: {
+        type: Sequelize.UUID, //uniform unique identifier
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        primaryKey: true
+    },
+    projectId: {
+        type: Sequelize.UUID
+    },
+    userId: {
+        type: Sequelize.UUID
+    }
+})
+
 //descriem relatiile intre colectii
 User.hasMany(Bug, {foreignKey: 'userId'}); //un utilizator pot sa ii fie alocate mai multe bugguri
 Bug.belongsTo(User, {foreignKey: 'userId'}); //un bug este alocat unui singur utilizator
@@ -79,14 +94,14 @@ Project.hasMany(Bug, {foreignKey: 'projectId'});
 Bug.belongsTo(Project, {foreignKey: 'projectId'});
 
 // realtie many to many care este stabilita prin intermediul altei tabele
-Project.belongsToMany(User, {through: "project_team"});
-User.belongsToMany(Project, {through: "project_team"});
+User.belongsToMany(Project, { through: { model: project_users, unique: false}});
+Project.belongsToMany(User, { through:  { model: project_users, unique: false}});
 
 async function initialize() {
     await sequelize.authenticate();
     // force:true - se face in teste(nu altereaza baza de date, deoarece sterge tabelele si le reface la repornire)
     // alter:true - actualizeaza tabelele conform modelului
-    await sequelize.sync({alter: true});
+    await sequelize.sync({alter: false});
 }
 
 export {

@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import { Project, User } from "./repository.mjs";
+import { Bug, Project, User } from "./repository.mjs";
 
 function valid(Model, payload) {
     return Object.entries(Model.tableAttributes).reduce((valid, [name, field]) => {
@@ -158,26 +158,19 @@ async function deleteElement(Model, req, res) {
 
 async function getProjectUsers(req, res) {
     try {
-        let project = await Project.findByPk(req.params.projectId);
-        if(project) {
-            let users = await Project.findAll({
-                include: [
-                    {
-                        model: User,
-                        through: {
-                            attributes: [],
-                        }
-                    },
-                ],
-            });
-            if (users.length > 0) {
-                res.status(200).json(users);
-            } else {
-                res.status(204).send();
-            }
-        } else {
-            res.status(404).send();
-        }
+        let users = await Project.findByPk(req.params.projectId,
+        {
+            include: [
+                {
+                    model: User,
+                    as: "users",
+                    through: {
+                    attributes: [],
+                    }
+                },
+            ],
+        });
+        res.status(200).json(users);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -188,7 +181,7 @@ async function postProjectUser(req, res) {
         let project = await Project.findByPk(req.params.projectId);
         let user = await User.findByPk(req.params.userId);
         if (project && user) {
-            project.addUser(user);
+            await project.addUser(user);
             res.status(204).send();
         } else {
             res.status(404).send();
@@ -200,14 +193,39 @@ async function postProjectUser(req, res) {
 
 async function getProjectUser(req, res) {
 
+
 }
 
 async function getUserProjects(req, res) {
-
+    try {
+        let projects = await User.findByPk(req.params.userId,
+        {
+            include: [
+                {
+                    model: Project,
+                    as: "projects",
+                    through: {
+                    attributes: [],
+                    }
+                },
+            ],
+        });
+        res.status(200).json(projects);
+    } catch (error) {
+        res.status(500).json(error);
+    }
 }
 
 async function getProjectBugs(req, res) {
-
+    try {
+        let bugs = await Bug.findAll(
+        {
+            where: {projectId: req.params.projectId},
+        });
+        res.status(200).json(bugs);
+    } catch (error) {
+        res.status(500).json(error);
+    }
 }
 
 export {
