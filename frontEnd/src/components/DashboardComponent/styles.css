@@ -1,0 +1,16 @@
+.badge {
+    background-color: blue;
+    color: white;
+    padding: 4px 8px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  .imgStyle{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 40px;
+    margin-right: 10px;
+}
