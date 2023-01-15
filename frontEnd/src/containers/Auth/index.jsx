@@ -10,6 +10,41 @@ const Auth = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
 
+  const register = async (event) => {
+    event.preventDefault();
+    const user = {
+      "firstName": event.target.firstName.value,
+      "lastName": event.target.lastName.value,
+      "email": event.target.email.value,
+      "password": event.target.password.value,
+      "role": "undefined"
+    }
+      createUser(user);
+      window.location.reload(false);
+  }
+
+  const login = async (event) => {
+    event.preventDefault();
+    const users = await useUsers()
+ 
+    const email = event.target.email.value;
+    const pass = event.target.password.value;
+    
+    Promise.all(
+      users.map(async (user) => {
+        //find user and compare
+        if(user){
+          if(user.email === email && user.password === pass) {
+            // setIsSubmitted(true);
+            navigate(`dashboard/${user.id}`);
+          }else{
+           //to invalid email and pass handler
+          }
+        }
+      }))
+  }
+
+
   if (authMode === "signin") {
     return (
       <div className="Auth-form-container">
