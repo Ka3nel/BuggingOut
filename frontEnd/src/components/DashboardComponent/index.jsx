@@ -6,7 +6,7 @@ import virus from "../../assets/virus.png";
 import "./styles.css";
 
 const DashboardComponent = (props) => {
-    console.log(props.user.id);
+    console.log(props.user.role);
     return(
         <div className={"pt-3 pb-3 mt-5"} style={{minHeight: "86vh"}}>
     {props.user.email ? (
@@ -23,12 +23,12 @@ const DashboardComponent = (props) => {
                         to={"/auth/dashboard/projects"}
                       >
                         <img className="imgStyle" src={coding} alt="Logo" />
-                        {props.user.role === "TST"
+                        {props.user.role === "tester"
                           ? "Projects"
                           : "My Projects"}
                       </Link>
                     </li>
-                    {props.user.role === "MP" ? (
+                    {props.user.role === "membru" ? (
                       <li className="list-group-item d-flex justify-content-start">
                       <Link
                         className={"link-font"}

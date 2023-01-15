@@ -6,6 +6,7 @@ const Projects = () => {
 
     const projects = useProjects();
     console.log(projects);
+    
     return (
         <div
         className={"pt-5 pb-3 pl-2 pr-2 mt-5 mr-3 ml-3 mb-5"}

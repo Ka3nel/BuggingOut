@@ -35,7 +35,7 @@ const NavbarComponent = (props) => {
               //   history.location.pathname === "/bugtrail-v3" ? "active" : ""
               // }`}
             >
-              <Link to={"/bugtrail-v3"} className={"nav-link"}>
+              <Link to={"/"} className={"nav-link"}>
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
@@ -48,7 +48,7 @@ const NavbarComponent = (props) => {
             >
               {!props.user.email && (
                 <Link
-                  to={"/bugtrail-v3/register-and-login"}
+                  to={"/auth"}
                   className={"nav-link"}
                 >
                   Login and Register

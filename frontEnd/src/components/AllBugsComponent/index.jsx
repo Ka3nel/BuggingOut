@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useBugs } from "../../services/hooks/bugs";
-import { useNavigate } from "react-router";
 
-// const useQuery = () => {
-// return new URLSearchParams(useLocation().search);
-// };
 
-const ViewBugsComponent = () => {
-  //   let query = useQuery();
-  //   let type = query.get("type");
-  //   let projectId = query.get("projectId");
-  const navigate = useNavigate();
+const AllBugsComponent = () => {
   const [data, setData] = useState();
   useEffect(() => {
     const dataFetch = async () => {
@@ -35,18 +27,21 @@ const ViewBugsComponent = () => {
   if (data !== undefined) {
     bugs = data;
   }
-
-  const resolveBug = (id) => {
-    navigate(`${id}`)
-    //todo: add bug to user bugs list 
-  }
+  
+  // const addBug = (bug) => {
+  //   //todo: trb facut in backend getUserBugs + ruta - nvm nu mai
+  //   addBugByUserId(bug.userId, bug)
+  // }  
 
   return (
     <div
       className="pt-3 pb-3 pl-2 pr-2 mt-5 mr-3 ml-3 mb-5"
       style={{ minHeight: "81vh" }}
     >
-      <h2 className={"text-center"}>My Bugs</h2>
+      <h2 className={"text-center"}>All Bugs</h2>
+      <Link to={`add-bug`}>
+              <button className="btn btn-warning border-dark">Add Bug</button>
+            </Link>
       {bugs.length > 0 ? (
         <table className="table table-bordered table-striped table-dark mb-5">
           <thead>
@@ -54,9 +49,8 @@ const ViewBugsComponent = () => {
               <th scope="col"></th>
               <th scope="col">Bug Id</th>
               <th scope="col">Project Id</th>
-              <th scope="col">Commit Link</th>
+              <th scope="col">CommitLink</th>
               <th scope="col">Status</th>
-              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -77,8 +71,7 @@ const ViewBugsComponent = () => {
                   {bug.projectId}
                 </td>
               <td>{bug.commitLink}</td>
-                <td>{bug.status}</td>
-                <td><button onClick={() => resolveBug(bug.id)}>Resolve Bug</button></td>
+              <td>{bug.status}</td>
             </tr>
             ))} 
           </tbody>
@@ -90,4 +83,4 @@ const ViewBugsComponent = () => {
   );
 };
 
-export default ViewBugsComponent;
+export default AllBugsComponent;

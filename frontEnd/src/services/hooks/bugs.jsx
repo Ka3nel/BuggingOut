@@ -55,7 +55,25 @@ export const createBug = async (bug) => {
         this.useBugs();
     }catch(err){
         console.warn(err);
-        this.emitter.emit('ADD_BUG_ERROR');
+        // this.emitter.emit('ADD_BUG_ERROR');
+    }    
+}
+
+export const addBugByUserId = async (userId, bug) => {
+    try{
+        const response = await fetch(`${SERVER}/bugs/${userId}`, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bug)
+        });
+        if (!response.ok) {
+            throw response
+        }
+        this.useBugs();
+    }catch(err){
+        console.warn(err);
     }    
 }
 
@@ -89,7 +107,7 @@ export const deleteBug = async (id) => {
         this.useBugs();
     }catch(err){
         console.warn(err);
-        this.emitter.emit('DELETE_BUG_ERROR');
+        // this.emitter.emit('DELETE_BUG_ERROR');
     }    
 }
 
