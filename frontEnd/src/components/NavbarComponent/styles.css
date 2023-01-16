@@ -5,3 +5,21 @@
     width: 40px;
     margin-right: 10px;
 }
+
+.imgNavStyle{
+    padding: 5px;
+    width: 40px;
+    margin-right: 10px;
+}
+
+#navbarNav{
+    background-color: #293241;
+}
+
+.navbar{
+    background-color: #293241;
+}
+
+.navbar{
+    color: #ee6c4d;
+}

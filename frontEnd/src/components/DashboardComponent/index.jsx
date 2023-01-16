@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import coding from "../../assets/coding.png";
 import malware from "../../assets/malware.png";
 import virus from "../../assets/virus.png";
+import programming from "../../assets/programming.png";
 import "./styles.css";
 
 const DashboardComponent = (props) => {
-    console.log(props.user.id);
     return(
         <div className={"pt-3 pb-3 mt-5"} style={{minHeight: "86vh"}}>
     {props.user.email ? (
         <div className="card border-dark m-5">
-          <h5 className="card-header text-white bg-dark">User Dashboard</h5>
+          <h5 className="cardH text-white">User Dashboard</h5>
           <div className="card-body">
             <div className="row">
               <div className="col-md-3 col-sm-12">
@@ -23,17 +23,18 @@ const DashboardComponent = (props) => {
                         to={"/auth/dashboard/projects"}
                       >
                         <img className="imgStyle" src={coding} alt="Logo" />
-                        {props.user.role === "TST"
+                        {props.user.role === "tester"
                           ? "Projects"
                           : "My Projects"}
                       </Link>
                     </li>
-                    {props.user.role === "MP" ? (
+                    {props.user.role === "membru" ? (
                       <li className="list-group-item d-flex justify-content-start">
                       <Link
                         className={"link-font"}
                         to={"/auth/dashboard/new-project"}
                       >
+                        <img className="imgStyle" src={programming} alt="Logo" />
                         Create A New Project
                       </Link>
                     </li>
@@ -56,21 +57,13 @@ const DashboardComponent = (props) => {
                         All Bugs
                       </Link>
                     </li>
-                    <li className="list-group-item d-flex justify-content-start">
-                      {/* <Link
-                        className={"link-font"}
-                        to={"/bugtrail-v3/view-tickets?type=assigned-to-me"}
-                      >
-                        Bugs Assigned To Me
-                      </Link> */}
-                    </li>
                   </ul>
                 </div>
               </div>
 
               <div className="col-md-9 col-sm-12">
                 <div className="card border-dark">
-                  <h5 className="card-header text-white bg-dark">
+                  <h5 className="cardH text-white">
                     {props.user.firstName} {props.user.lastName}
                   </h5>
                   <ul className="list-group list-group-flush">
@@ -106,7 +99,7 @@ const DashboardComponent = (props) => {
         </div>
       ) : (
         <h2 className={"text-center"}>
-          Welcome to Outliers Bug Tracker. Please register or login
+          Welcome to Outliers Bug Tracker. Please SignIn or Register
           to continue.
         </h2>
       )}

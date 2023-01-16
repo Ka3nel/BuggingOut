@@ -1,5 +1,5 @@
 .badge {
-    background-color: blue;
+    background-color: #293241;
     color: white;
     padding: 4px 8px;
     margin-right: 10px;
@@ -13,4 +13,14 @@
     padding: 5px;
     width: 40px;
     margin-right: 10px;
+}
+
+.link-font {
+  color: black;
+}
+
+.cardH{
+  background-color: #6580af;
+  padding: 15px 10px;
+  margin-bottom: 0;
 }

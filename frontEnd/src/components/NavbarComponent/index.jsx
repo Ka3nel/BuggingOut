@@ -13,7 +13,7 @@ const NavbarComponent = (props) => {
 
   return (
     <div className={"bootstrap-navbar"}>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
         <Link to={"/"} className={"navbar-brand"}>
           BuggingOut
         </Link>
@@ -35,7 +35,7 @@ const NavbarComponent = (props) => {
               //   history.location.pathname === "/bugtrail-v3" ? "active" : ""
               // }`}
             >
-              <Link to={"/bugtrail-v3"} className={"nav-link"}>
+              <Link to={"/"} className={"nav-link"}>
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
@@ -48,10 +48,10 @@ const NavbarComponent = (props) => {
             >
               {!props.user.email && (
                 <Link
-                  to={"/bugtrail-v3/register-and-login"}
+                  to={"/auth"}
                   className={"nav-link"}
                 >
-                  Login and Register
+                  SignIn or Register
                 </Link>
               )}
             </li>
@@ -66,14 +66,14 @@ const NavbarComponent = (props) => {
                     refreshComponent();
                   }}
                 >
-                  Logout
+                  LogOut
                 </div>
               )}
             </li>
           </ul>
           <span className="ml-auto d-flex justify-content-end">
             {/* {currentUser.email ? `Hi, ${currentUser.displayName}` : ""} */}
-            <img className="imgStyle" src={user} alt="Logo" />
+            <img className="imgNavStyle" src={user} alt="Logo" />
           </span>
         </div>
       </nav>

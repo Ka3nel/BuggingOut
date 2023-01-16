@@ -4,6 +4,8 @@ import { useNavigate } from "react-router";
 import main from "../../assets/main.jpg";
 import "./styles.css";
 
+import NavbarComponent from "../../components/NavbarComponent";
+
 const HomePage = () => {
   const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ const HomePage = () => {
    }
 
  return (
-   <div className="Auth-form-container">
+   <div className="Home-container">
      <div className="Elements">
        <div className="Arrange">
          <h1 className="h1">Welcome<br></br>to<mark className="salmon">BuggingOut</mark></h1>

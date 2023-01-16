@@ -33,7 +33,7 @@ const Auth = () => {
       "lastName": event.target.lastName.value,
       "email": event.target.email.value,
       "password": event.target.password.value,
-      "role": "undefined"
+      "role": event.target.role.value
     }
       createUser(user);
       window.location.reload(false);
@@ -109,7 +109,7 @@ const Auth = () => {
     <div className="Auth-form-container">
       <form className="Auth-form" onSubmit={register}>
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign In</h3>
+          <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">
             Already registered?{" "}
             <span className="link-primary" onClick={changeAuthMode}>
@@ -151,6 +151,15 @@ const Auth = () => {
               className="form-control mt-1"
               placeholder="Password"
             />
+          </div>
+          <div className="form-group mt-3">
+            <label>Role</label>
+            <select
+              name="role"
+              className="form-control mt-1">
+              <option value="membru">Member</option>
+              <option value="tester">Tester</option>
+            </select>
           </div>
           <div className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-primary">

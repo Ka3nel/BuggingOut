@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
+    margin-top: 50px;
 }
 
 .imgAlign{
@@ -19,6 +19,7 @@
 .Arrange{
     display: flex;
     flex-direction: column;
+    float: left;
 }
 
 .btn-group .button {
@@ -51,12 +52,12 @@
 }
 
 .salmon{
-  color: #FE7062;
+  color: #ee6c4d;
   background: none;
 }
 
 .footer {
-  background-color: #1F51FF;
+  background-color: #293241;
   color: white;
   font-size: 15px;
   padding: 10px;
