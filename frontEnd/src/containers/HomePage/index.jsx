@@ -1,5 +1,4 @@
 import React from "react";
-// import { redirect, useParams } from "react-router";
 import { useNavigate } from "react-router";
 import main from "../../assets/main.jpg";
 import "./styles.css";

@@ -12,6 +12,8 @@ import MyBugs from "./containers/MyBugs";
 import AllBugs from "./containers/AllBugs";
 import Projects from "./containers/Projects";
 import BugDetailsComponent from "./components/BugDetailsComponent";
+import BugDetailsAllComponent from "./components/BugDetailsAllComponent";
+import AddBugComponent from "./components/AddBugComponent";
 
 class App extends React.Component {
   state = {
@@ -46,7 +48,10 @@ class App extends React.Component {
             <Route path="auth/dashboard/new-project/*" element={<CreateNewProject />} />
             <Route path="auth/dashboard/my-bugs" element={<MyBugs />} />
             <Route path="auth/dashboard/my-bugs/*" element={<BugDetailsComponent />} />
-            <Route path="auth/dashboard/all-bugs/*" element={<AllBugs />} />
+            <Route path="auth/dashboard/all-bugs/" element={<AllBugs />} />
+            <Route path="auth/dashboard/all-bugs/*" element={<BugDetailsAllComponent />} />
+            <Route path="auth/dashboard/all-bugs/add-bug" element={<AddBugComponent />} />
+v
           </Routes>
         </BrowserRouter>
       </div>
