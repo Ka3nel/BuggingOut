@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import "./styles.css";
 import DashboardComponent from "../../components/DashboardComponent";
 import NavbarComponent from "../../components/NavbarComponent";
+import FooterComponent from "../../components/FooterComponent";
 
 const Dashboard = () => {
   const params = useParams();
@@ -36,6 +37,7 @@ const Dashboard = () => {
     <>
       <NavbarComponent user={currentUser}/>
       <DashboardComponent user={currentUser} />
+      <FooterComponent/>
     </>
   );
 };

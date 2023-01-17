@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useBugs } from "../../services/hooks/bugs";
+import "./styles.css";
 
 
 const AllBugsComponent = () => {
@@ -27,7 +28,7 @@ const AllBugsComponent = () => {
   if (data !== undefined) {
     bugs = data;
   }
-  
+
   // const addBug = (bug) => {
   //   //todo: trb facut in backend getUserBugs + ruta - nvm nu mai
   //   addBugByUserId(bug.userId, bug)
@@ -39,46 +40,47 @@ const AllBugsComponent = () => {
       style={{ minHeight: "81vh" }}
     >
       <h2 className={"text-center"}>All Bugs</h2>
-      <Link to={`add-bug`}>
-              <button className="btn btn-warning border-dark">Add Bug</button>
-            </Link>
       {bugs.length > 0 ? (
-        <table className="table table-bordered table-striped table-dark mb-5">
+        <table className="table table-bordered" id="myTable">
           <thead>
             <tr>
-              <th scope="col"></th>
+              <th scope="col">No.</th>
               <th scope="col">Bug Id</th>
               <th scope="col">Project Id</th>
               <th scope="col">CommitLink</th>
               <th scope="col">Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={"text-white"}>
             {bugs.map((bug, index) => (
-            <tr
-            key={index}
-            >
-              <th scope="row">{index + 1}</th>
-              <td>
-                <Link
+              <tr
+                key={index}
+              >
+                <th scope="row">{index + 1}</th>
+                <td>
+                  <Link
                     className={"text-white"}
                     to={`${bug.id}`}
                   >
                     {bug.id}
                   </Link>
-              </td>
-              <td>
+                </td>
+                <td>
                   {bug.projectId}
                 </td>
-              <td>{bug.commitLink}</td>
-              <td>{bug.status}</td>
-            </tr>
-            ))} 
+                <td>{bug.commitLink}</td>
+                <td>{bug.status}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
+
       ) : (
         <h3 className={"text-center pt-5"}>No Bugs found</h3>
       )}
+      <Link to={`add-bug`}>
+        <button className="btn btn-warning border-dark" id="btnAdd">Add Bug</button>
+      </Link>
     </div>
   );
 };

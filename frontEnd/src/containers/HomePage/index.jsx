@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router";
 import main from "../../assets/main.jpg";
 import "./styles.css";
-
 import NavbarComponent from "../../components/NavbarComponent";
+import FooterComponent from "../../components/FooterComponent";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const HomePage = () => {
 
  return (
    <div className="Home-container">
+     <NavbarComponent user={null}/>
      <div className="Elements">
        <div className="Arrange">
          <h1 className="h1">Welcome<br></br>to<mark className="salmon">BuggingOut</mark></h1>
@@ -26,10 +27,7 @@ const HomePage = () => {
          <img className="imgStyles" src={main} />
        </div>
      </div>
-     <div class="footer">
-     <h6>Created by Outliers</h6>
-     <p>&copy; Copyright 2023</p>
-     </div>
+     <FooterComponent/>
    </div>
  );
 }

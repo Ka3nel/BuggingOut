@@ -35,7 +35,7 @@ const ViewProjectsComponent = () => {
         <table className="table table-bordered" id="myTable">
           <thead>
             <tr>
-              <th scope="col">S.No.</th>
+              <th scope="col">No.</th>
               <th scope="col">Project Name</th>
               <th scope="col">Project Status</th>
             </tr>

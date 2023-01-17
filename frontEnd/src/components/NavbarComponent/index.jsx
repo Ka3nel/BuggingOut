@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import user from "../../assets/user.png";
+import userPng from "../../assets/user.png";
 import "./styles.css";
 
 const NavbarComponent = (props) => {
@@ -36,7 +36,7 @@ const NavbarComponent = (props) => {
               // }`}
             >
               <Link to={"/"} className={"nav-link"}>
-                Home <span className="sr-only">(current)</span>
+                Home
               </Link>
             </li>
             <li
@@ -46,7 +46,7 @@ const NavbarComponent = (props) => {
               //     : ""
               // }`}
             >
-              {!props.user.email && (
+              {!props.user && (
                 <Link
                   to={"/auth"}
                   className={"nav-link"}
@@ -56,7 +56,7 @@ const NavbarComponent = (props) => {
               )}
             </li>
             <li>
-              {props.user.email && (
+              {props.user && (
                 <div
                   className={"nav-link"}
                   style={{ cursor: "pointer" }}
@@ -73,7 +73,7 @@ const NavbarComponent = (props) => {
           </ul>
           <span className="ml-auto d-flex justify-content-end">
             {/* {currentUser.email ? `Hi, ${currentUser.displayName}` : ""} */}
-            <img className="imgNavStyle" src={user} alt="Logo" />
+            <img className="imgNavStyle" src={userPng} alt="Logo" />
           </span>
         </div>
       </nav>

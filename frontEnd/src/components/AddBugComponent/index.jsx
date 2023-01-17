@@ -4,6 +4,9 @@ import { useUsers } from "../../services/hooks/users";
 import { useEffect } from "react";
 import { useProjects } from "../../services/hooks/projects";
 import { createBug } from "../../services/hooks/bugs";
+import NavbarComponent from "../../components/NavbarComponent";
+import FooterComponent from "../../components/FooterComponent";
+import "./styles.css";
 
 const AddBugComponent = () => {
   const [description, setDescription] = useState("");
@@ -87,15 +90,15 @@ const AddBugComponent = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const bug= {
-        // id: uuidv4(),
-        description: description,
-        status: status,
-        commitLink: commitLink,
-        // createdAt: "",
-        // updatedAt: "",
-        userId: userId,
-        projectId: projectId,
+    const bug = {
+      // id: uuidv4(),
+      description: description,
+      status: status,
+      commitLink: commitLink,
+      // createdAt: "",
+      // updatedAt: "",
+      userId: userId,
+      projectId: projectId,
     }
     createBug(bug);
     //todo: display something after submit
@@ -103,11 +106,11 @@ const AddBugComponent = () => {
 
   return (
     <div
-      className={"pt-3 pl-2 pr-2 mt-5 mr-3 ml-3"}
-      style={{ minHeight: "86vh" }}
-    >
+      className={"pt-5 pl-2 pr-2 mt-5 mr-3 ml-3 form"}
+      style={{ minHeight: "86vh" }}>
+      <NavbarComponent user={null} />
       <h1 className={"text-center"}>Add Bug</h1>
-      <form className={"mb-5"} onSubmit={handleSubmit}>
+      <form className={"mb-5 pt-3"} onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="defectDescription">Description</label>
           <textarea
@@ -157,7 +160,7 @@ const AddBugComponent = () => {
           >
             <option>--Select--</option>
             {users.map((user) => (
-            //   <option>{user.firstName + " " + user.lastName}</option>
+              //   <option>{user.firstName + " " + user.lastName}</option>
               <option key={user.id}>{user.id}</option>
             ))}
           </select>
@@ -177,10 +180,11 @@ const AddBugComponent = () => {
             ))}
           </select>
         </div>
-        <button type={"submit"} className={"btn btn-dark"}>
+        <button type={"submit"} className={"btn btn-dark btnSubmit"}>
           Submit
         </button>
       </form>
+      <FooterComponent />
     </div>
   );
 };

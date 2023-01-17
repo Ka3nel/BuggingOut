@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useBugs } from "../../services/hooks/bugs";
 import { useNavigate } from "react-router";
+import "./styles.css";
 
 // const useQuery = () => {
 // return new URLSearchParams(useLocation().search);
@@ -48,10 +49,10 @@ const ViewBugsComponent = () => {
     >
       <h2 className={"text-center"}>My Bugs</h2>
       {bugs.length > 0 ? (
-        <table className="table table-bordered table-striped table-dark mb-5">
+        <table className="table table-bordered" id="myTable">
           <thead>
             <tr>
-              <th scope="col"></th>
+              <th scope="col">No.</th>
               <th scope="col">Bug Id</th>
               <th scope="col">Project Id</th>
               <th scope="col">Commit Link</th>
@@ -59,7 +60,7 @@ const ViewBugsComponent = () => {
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={"text-white"}>
             {bugs.map((bug, index) => (
             <tr
             key={index}

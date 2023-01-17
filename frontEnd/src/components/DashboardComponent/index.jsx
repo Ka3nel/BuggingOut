@@ -7,9 +7,9 @@ import programming from "../../assets/programming.png";
 import "./styles.css";
 
 const DashboardComponent = (props) => {
-    return(
-        <div className={"pt-3 pb-3 mt-5"} style={{minHeight: "86vh"}}>
-    {props.user.email ? (
+  return (
+    <div className={"pt-3 pb-3 mt-5"} style={{ minHeight: "86vh" }}>
+      {props.user.email ? (
         <div className="card border-dark m-5">
           <h5 className="cardH text-white">User Dashboard</h5>
           <div className="card-body">
@@ -30,33 +30,37 @@ const DashboardComponent = (props) => {
                     </li>
                     {props.user.role === "membru" ? (
                       <li className="list-group-item d-flex justify-content-start">
-                      <Link
-                        className={"link-font"}
-                        to={"/auth/dashboard/new-project"}
-                      >
-                        <img className="imgStyle" src={programming} alt="Logo" />
-                        Create A New Project
-                      </Link>
-                    </li>
-                    ) : undefined}
-                    <li className="list-group-item d-flex justify-content-start">
-                      <Link
-                        className={"link-font"}
-                        to={"/auth/dashboard/my-bugs"}
-                      >
-                        <img className="imgStyle" src={malware} alt="Logo" />
-                        My Bugs
-                      </Link>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-start">
-                      <Link
-                        className={"link-font"}
-                        to={"/auth/dashboard/all-bugs"}
-                      >
-                        <img className="imgStyle" src={virus} alt="Logo" />
-                        All Bugs
-                      </Link>
-                    </li>
+                        <Link
+                          className={"link-font"}
+                          to={"/auth/dashboard/new-project"}
+                        >
+                          <img className="imgStyle" src={programming} alt="Logo" />
+                          Create A New Project
+                        </Link>
+                      </li>
+                    ) :undefined}
+                    {props.user.role === "membru" ? (
+                      <li className="list-group-item d-flex justify-content-start">
+                        <Link
+                          className={"link-font"}
+                          to={"/auth/dashboard/my-bugs"}
+                        >
+                          <img className="imgStyle" src={malware} alt="Logo" />
+                          My Bugs
+                        </Link>
+                      </li>
+                    ) : (
+                      <li className="list-group-item d-flex justify-content-start">
+                        <Link
+                          className={"link-font"}
+                          to={"/auth/dashboard/all-bugs"}
+                        >
+                          <img className="imgStyle" src={virus} alt="Logo" />
+                          All Bugs
+                        </Link>
+                      </li>
+                    )
+                    }
                   </ul>
                 </div>
               </div>
@@ -69,17 +73,17 @@ const DashboardComponent = (props) => {
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-start">
                       <span className="badge">
-                        User ID  
+                        User ID
                       </span>
                       {props.user.id}
                     </li>
                     <li className="list-group-item d-flex justify-content-start">
                       <span className="badge badge-dark badge-pill">First Name</span>{" "}
-                       {props.user.firstName}
+                      {props.user.firstName}
                     </li>
                     <li className="list-group-item d-flex justify-content-start">
                       <span className="badge badge-dark badge-pill">Last Name</span>{" "}
-                       {props.user.lastName}
+                      {props.user.lastName}
                     </li>
                     <li className="list-group-item d-flex justify-content-start">
                       <span className="badge badge-dark badge-pill">Email</span>{" "}
@@ -103,9 +107,9 @@ const DashboardComponent = (props) => {
           to continue.
         </h2>
       )}
-    
+
     </div>
-    );
+  );
 }
 
 

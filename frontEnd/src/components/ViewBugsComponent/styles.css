@@ -1,0 +1,19 @@
+#myTable{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#myTable tr:nth-child(odd){background-color: #425a84;}
+
+#myTable tr:nth-child(even){background-color: #6580af;}
+
+#myTable tr:hover {background-color: #8599bc;}
+
+#myTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: white;
+  text-align: center;
+  background-color: #293241;
+}
