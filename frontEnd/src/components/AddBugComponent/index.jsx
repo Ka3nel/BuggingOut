@@ -10,10 +10,11 @@ import "./styles.css";
 
 const AddBugComponent = () => {
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState();
   const [commitLink, setCommitLink] = useState("");
-  const [userId, setUserId] = useState("");
+  //const [userId, setUserId] = useState("");
   const [projectId, setProjectId] = useState("");
+  const [severity, setSeverity] = useState("");
+  const [priority, setPriority] = useState("");
 
   //users and projects
   const [data, setData] = useState();
@@ -67,16 +68,16 @@ const AddBugComponent = () => {
         setDescription(value);
         break;
 
-      case "status":
-        setStatus(value);
+      case "severity":
+        setSeverity(value);
         break;
 
       case "commitLink":
         setCommitLink(value);
         break;
 
-      case "userId":
-        setUserId(value);
+      case "priority":
+        setPriority(value);
         break;
 
       case "projectId":
@@ -93,11 +94,13 @@ const AddBugComponent = () => {
     const bug = {
       // id: uuidv4(),
       description: description,
-      status: status,
+      status: "",
+      severity: severity,
+      priority: priority,
       commitLink: commitLink,
+      userId: "",
       // createdAt: "",
       // updatedAt: "",
-      userId: userId,
       projectId: projectId,
     }
     createBug(bug);
@@ -124,19 +127,33 @@ const AddBugComponent = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="defectPriority">Status</label>
+          <label htmlFor="defectPriority">Severity</label>
           <select
             className="form-control"
-            name="status"
-            id="status"
-            value={status}
+            name="severity"
+            id="severity"
+            value={severity}
             onChange={handleChange}
           >
             <option>--Select--</option>
-            <option>Pending</option>
-            <option>New</option>
-            <option>Resolved</option>
-            <option>(Feature) request</option>
+            <option>Light</option>
+            <option>Moderate</option>
+            <option>Fatal</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="defectPriority">Priority</label>
+          <select
+            className="form-control"
+            name="priority"
+            id="priority"
+            value={priority}
+            onChange={handleChange}
+          >
+            <option>--Select--</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
           </select>
         </div>
         <div className="form-group">
@@ -149,7 +166,7 @@ const AddBugComponent = () => {
             id="commitLink"
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="defectPriority">User</label>
           <select
             className="form-control"
@@ -164,7 +181,7 @@ const AddBugComponent = () => {
               <option key={user.id}>{user.id}</option>
             ))}
           </select>
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="defectPriority">Project</label>
           <select
