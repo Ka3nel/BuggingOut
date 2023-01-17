@@ -52,6 +52,14 @@ const Bug = sequelize.define('bug', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    severity: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    priority: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     commitLink: {
         type: Sequelize.STRING,
         allowNull: false
@@ -64,6 +72,10 @@ const Project = sequelize.define('project', {
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: true
     },
     repository: {
         type: Sequelize.STRING,
