@@ -21,6 +21,7 @@ const ViewProjectsComponent = () => {
     repository: "",
     createdAt: "",
     updatedAt: "",
+    name: "",
   }];
   if (data !== undefined) {
     projects = data;
@@ -31,13 +32,13 @@ const ViewProjectsComponent = () => {
         className={"pt-5 pb-3 pl-2 pr-2 mt-5 mr-3 ml-3 mb-5"}
         style={{ minHeight: "81vh" }}
       >
-        <h2 className={"text-center"}>PROJECTS PAGE</h2>
+        <h2 className={"text-center"}>PROJECTS</h2>
         <table className="table table-bordered" id="myTable">
           <thead>
             <tr>
               <th scope="col">No.</th>
               <th scope="col">Project Name</th>
-              <th scope="col">Project Status</th>
+              <th scope="col">Project Repository</th>
             </tr>
           </thead>
           <tbody>
@@ -50,10 +51,10 @@ const ViewProjectsComponent = () => {
                       className={"text-white"}
                       to={`${project.id}`}
                     >
-                      {project.repository}
+                      {project.name}
                     </Link>
                   </td>
-                  <td className={"text-white"}>{project.updatedAt}</td>
+                  <td className={"text-white"}>{project.repository}</td>
                 </tr>
               );
             })}

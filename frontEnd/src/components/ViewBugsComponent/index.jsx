@@ -4,14 +4,8 @@ import { useBugs } from "../../services/hooks/bugs";
 import { useNavigate } from "react-router";
 import "./styles.css";
 
-// const useQuery = () => {
-// return new URLSearchParams(useLocation().search);
-// };
 
 const ViewBugsComponent = () => {
-  //   let query = useQuery();
-  //   let type = query.get("type");
-  //   let projectId = query.get("projectId");
   const navigate = useNavigate();
   const [data, setData] = useState();
   useEffect(() => {
@@ -37,9 +31,15 @@ const ViewBugsComponent = () => {
     bugs = data;
   }
 
+  const [currentId, setCurrentId] = useState("");
+  const assumeBug = (id) => {
+      setCurrentId(id);
+  }
+
   const resolveBug = (id) => {
-    navigate(`${id}`)
-    //todo: add bug to user bugs list 
+    if(currentId == id){
+      navigate(currentId);
+    }
   }
 
   return (
@@ -57,7 +57,8 @@ const ViewBugsComponent = () => {
               <th scope="col">Project Id</th>
               <th scope="col">Commit Link</th>
               <th scope="col">Status</th>
-              <th scope="col"></th>
+              <th scope="col">Solve</th>
+              <th scope="col">Assume</th>
             </tr>
           </thead>
           <tbody className={"text-white"}>
@@ -79,7 +80,8 @@ const ViewBugsComponent = () => {
                 </td>
               <td>{bug.commitLink}</td>
                 <td>{bug.status}</td>
-                <td><button onClick={() => resolveBug(bug.id)}>Resolve Bug</button></td>
+                <td><button onClick={() => resolveBug(bug.id)}>Solve Bug</button></td>
+                <td><button onClick={() => assumeBug(bug.id)}>Assume Bug</button></td>
             </tr>
             ))} 
           </tbody>

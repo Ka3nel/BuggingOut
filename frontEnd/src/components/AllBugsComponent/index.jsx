@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useBugs } from "../../services/hooks/bugs";
+import { deleteBug } from "../../services/hooks/bugs";
 import "./styles.css";
 
 
@@ -34,6 +35,11 @@ const AllBugsComponent = () => {
   //   addBugByUserId(bug.userId, bug)
   // }  
 
+  const deleteBugById = (id) => {
+    deleteBug(id);
+    // console.log(id);
+  }
+
   return (
     <div
       className="pt-3 pb-3 pl-2 pr-2 mt-5 mr-3 ml-3 mb-5"
@@ -49,6 +55,7 @@ const AllBugsComponent = () => {
               <th scope="col">Project Id</th>
               <th scope="col">CommitLink</th>
               <th scope="col">Status</th>
+              <th scope="col">Delete Bug</th>
             </tr>
           </thead>
           <tbody className={"text-white"}>
@@ -70,6 +77,7 @@ const AllBugsComponent = () => {
                 </td>
                 <td>{bug.commitLink}</td>
                 <td>{bug.status}</td>
+                <td><button onClick={() => deleteBugById(bug.id)}>Delete Bug</button></td>
               </tr>
             ))}
           </tbody>

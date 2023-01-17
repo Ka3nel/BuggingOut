@@ -6,8 +6,8 @@ import { useEffect } from "react";
 
 const BugDetailsComponent = (props) => {
   const params = useParams();
-  const [comment, setcomment] = useState("");
-
+  const [comment, setComment] = useState("");
+  const [statusBug, setStatusBug] = useState("");
   const [data, setData] = useState();
   useEffect(() => {
     const dataFetch = async () => {
@@ -34,32 +34,28 @@ const BugDetailsComponent = (props) => {
   const handleCommentChange = (
     event
   ) => {
-    setcomment(event.target.value);
+    const { name, value } = event.target;
+    switch (name) {
+      case "statusBug":
+        setStatusBug(value);
+        break;
+
+      case "comment":
+        setComment(value);
+        break;
+
+      default:
+        break;
+    }
   };
   
-/*
- const register = async (event) => {
-    event.preventDefault();
-    const user = {
-      "firstName": event.target.firstName.value,
-      "lastName": event.target.lastName.value,
-      "email": event.target.email.value,
-      "password": event.target.password.value,
-      "role": "undefined"
-    }
-      createUser(user);
-      navigate(`auth`)
-  }
-*/
-
-
   const handleSubmitComment = (event) => {
     event.preventDefault();
     const newBug = {
       id: bug.id,
       description: bug.description,
-      status: bug.status,
-      commitLink: event.target.commitLinkText.value,
+      status: event.target.statusBug.value,
+      commitLink: event.target.comment.value,
       createdAt: bug.createdAt,
       updatedAt: bug.updatedAt,
       userId: bug.userId,
@@ -73,12 +69,6 @@ return(
     <div>
         <h2 className={"text-center"}>
           Bug Details {" "}
-          
-          {/* {true? (
-            <Link to={`/bugtrail-v3/edit-defect/${bug.id}`}>
-              <button className="btn btn-warning border-dark">Edit Ticket</button>
-            </Link>
-          ) : undefined} */}
         </h2>
         <div className="card border-dark mb-5">
           <ul className="list-group">
@@ -122,14 +112,31 @@ return(
             <label htmlFor="ticketComment">Add Commit Link</label>
             <textarea
               className={"form-control"}
-              name="commitLinkText"
-              id="ticketComment"
+              name="comment"
+              id="comment"
               placeholder={"Enter your comment here..."}
               rows={3}
               value={comment}
               onChange={handleCommentChange}
             />
           </div>
+          <div className="form-group">
+          <label htmlFor="defectPriority">Status</label>
+          <select
+            className="form-control"
+            name="statusBug"
+            id="statusBug"
+            value={statusBug}
+            onChange={handleCommentChange}
+          >
+            <option>--Select--</option>
+            <option>New</option>
+            <option>Pending</option>
+            <option>Solved</option>
+            <option>Active</option>
+          </select>
+        </div>
+          
           <button className="btn btn-dark">Submit</button>
         </form>
     </div>

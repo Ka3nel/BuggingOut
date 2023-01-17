@@ -6,12 +6,15 @@ import { useProjects } from "../../services/hooks/projects";
 import { createBug } from "../../services/hooks/bugs";
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
+import { useNavigate } from "react-router";
 import "./styles.css";
 
+
 const AddBugComponent = () => {
+  const navigate = useNavigate();
   const [description, setDescription] = useState("");
   const [commitLink, setCommitLink] = useState("");
-  //const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState("");
   const [projectId, setProjectId] = useState("");
   const [severity, setSeverity] = useState("");
   const [priority, setPriority] = useState("");
@@ -64,6 +67,10 @@ const AddBugComponent = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     switch (name) {
+      case "userId":
+        setUserId(value);
+        break;
+
       case "description":
         setDescription(value);
         break;
@@ -94,17 +101,17 @@ const AddBugComponent = () => {
     const bug = {
       // id: uuidv4(),
       description: description,
-      status: "",
+      status: "New",
       severity: severity,
       priority: priority,
       commitLink: commitLink,
-      userId: "",
+      userId: userId,
       // createdAt: "",
       // updatedAt: "",
       projectId: projectId,
     }
     createBug(bug);
-    //todo: display something after submit
+    navigate(-1);
   };
 
   return (
@@ -166,7 +173,7 @@ const AddBugComponent = () => {
             id="commitLink"
           />
         </div>
-        {/* <div className="form-group">
+        <div className="form-group">
           <label htmlFor="defectPriority">User</label>
           <select
             className="form-control"
@@ -181,7 +188,7 @@ const AddBugComponent = () => {
               <option key={user.id}>{user.id}</option>
             ))}
           </select>
-        </div> */}
+        </div>
         <div className="form-group">
           <label htmlFor="defectPriority">Project</label>
           <select

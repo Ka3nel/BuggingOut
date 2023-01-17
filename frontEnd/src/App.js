@@ -14,6 +14,7 @@ import Projects from "./containers/Projects";
 import BugDetailsComponent from "./components/BugDetailsComponent";
 import BugDetailsAllComponent from "./components/BugDetailsAllComponent";
 import AddBugComponent from "./components/AddBugComponent";
+import ProjectDetailsComponent from "./components/ProjectDetailsComponent";
 
 class App extends React.Component {
   state = {
@@ -44,14 +45,14 @@ class App extends React.Component {
             <Route path="/auth" element={<Auth />} />
             <Route path="/" element={<HomePage />} />
             <Route path="auth/dashboard/*" element={<Dashboard />} />
-            <Route path="auth/dashboard/projects/*" element={<Projects />} />
+            <Route path="auth/dashboard/projects" element={<Projects />} />
             <Route path="auth/dashboard/new-project/*" element={<CreateNewProject />} />
             <Route path="auth/dashboard/my-bugs" element={<MyBugs />} />
             <Route path="auth/dashboard/my-bugs/*" element={<BugDetailsComponent />} />
             <Route path="auth/dashboard/all-bugs/" element={<AllBugs />} />
             <Route path="auth/dashboard/all-bugs/*" element={<BugDetailsAllComponent />} />
             <Route path="auth/dashboard/all-bugs/add-bug" element={<AddBugComponent />} />
-v
+            <Route path="auth/dashboard/projects/*" element={<ProjectDetailsComponent />} />
           </Routes>
         </BrowserRouter>
       </div>
